@@ -2,6 +2,7 @@
 package Telas;
 
 import Classes.Usuario;
+import Classes.ValidadorCadastro;
 import Conexao.UsuarioDAO;
 import Conexao.conexao;
 import javax.swing.JOptionPane;
@@ -190,10 +191,11 @@ public class Cadastro_Usuario extends javax.swing.JFrame {
 
     private void cadastrar_botaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrar_botaoActionPerformed
         
-        if (nome_text.getText().isEmpty() && senha_text.getText().isEmpty()&& email_text.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        ValidadorCadastro validador = new ValidadorCadastro();
+        if (!validador.isCadastroValido(nome_text.getText(), email_text.getText(), senha_text.getText       ())) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente");
             return;
-        } else{
+            } else{
             JOptionPane.showMessageDialog(null, "Informações cadastradas com sucesso: \n Nome: " + nome_text.getText() 
                     + "\n Senha: " + senha_text.getText() 
                     + "\n Email: " + email_text.getText());          
